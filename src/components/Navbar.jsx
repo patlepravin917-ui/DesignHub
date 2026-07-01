@@ -10,9 +10,7 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await logoutUser();
-
       toast.success("Logged out successfully 👋");
-
       navigate("/login");
     } catch (error) {
       toast.error(error.message);
@@ -21,9 +19,13 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <h2 className="logo">DesignHub</h2>
+
+      <Link to="/" className="logo">
+        DesignHub
+      </Link>
 
       <ul className="nav-links">
+
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -32,17 +34,21 @@ function Navbar() {
           <Link to="/competitions">Competitions</Link>
         </li>
 
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
+        {user && (
+          <>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
 
-        <li>
-          <Link to="/submit">Submit Project</Link>
-        </li>
+            <li>
+              <Link to="/submit">Submit Project</Link>
+            </li>
 
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+          </>
+        )}
 
         {user ? (
           <li>
@@ -58,6 +64,7 @@ function Navbar() {
             <Link to="/login">Login</Link>
           </li>
         )}
+
       </ul>
     </nav>
   );

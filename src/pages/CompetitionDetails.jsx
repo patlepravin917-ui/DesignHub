@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
 import Footer from "../components/Footer";
+
 import { db } from "../firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
+
+import toast from "react-hot-toast";
 
 function CompetitionDetails() {
   const { id } = useParams();
@@ -32,6 +36,7 @@ function CompetitionDetails() {
       }
     } catch (error) {
       console.error(error);
+      toast.error("Failed to load competition.");
     } finally {
       setLoading(false);
     }
@@ -67,22 +72,29 @@ function CompetitionDetails() {
             </button>
           </Link>
         </div>
+
+        <Footer />
       </>
     );
   }
 
   return (
-    <Footer>
+    <>
       <Navbar />
 
       <div className="details-container">
+
         <img
-          src={competition.image}
+          src={
+            competition.image ||
+            "https://via.placeholder.com/900x500?text=DesignHub"
+          }
           alt={competition.title}
           className="details-image"
         />
 
         <div className="details-content">
+
           <span className="category">
             {competition.category}
           </span>
@@ -90,30 +102,33 @@ function CompetitionDetails() {
           <h1>{competition.title}</h1>
 
           <p>
-            <strong>🏆 Prize:</strong> {competition.prize}
+            <strong>🏆 Prize:</strong>{" "}
+            {competition.prize || "To Be Announced"}
           </p>
 
           <p>
-            <strong>📅 Deadline:</strong> {competition.deadline}
+            <strong>📅 Deadline:</strong>{" "}
+            {competition.deadline || "Coming Soon"}
           </p>
 
           <p>
             <strong>📝 Description:</strong>
             <br />
-            {competition.description}
+            {competition.description ||
+              "No description available."}
           </p>
 
           <p>
             <strong>✅ Eligibility:</strong>
             <br />
-            {competition.eligibility}
+            {competition.eligibility || "Open for everyone"}
           </p>
 
           <p
             style={{
               color: "#16a34a",
               fontWeight: "bold",
-              marginTop: "15px",
+              marginTop: "20px",
             }}
           >
             🟢 Registration Open
@@ -129,9 +144,13 @@ function CompetitionDetails() {
               Apply Now 🚀
             </button>
           </Link>
+
         </div>
+
       </div>
-    </Footer>
+
+      <Footer />
+    </>
   );
 }
 

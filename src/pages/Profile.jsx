@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import { auth, db } from "../firebase/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
 import Footer from "../components/Footer";
+
+import { auth, db } from "../firebase/firebase";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+
+import toast from "react-hot-toast";
 
 function Profile() {
   const [projectCount, setProjectCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchProjects();
@@ -13,6 +22,8 @@ function Profile() {
 
   const fetchProjects = async () => {
     try {
+      if (!auth.currentUser) return;
+
       const q = query(
         collection(db, "submissions"),
         where("email", "==", auth.currentUser.email)
@@ -22,9 +33,24 @@ function Profile() {
 
       setProjectCount(snapshot.size);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Unable to load profile.");
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <h2 style={{ textAlign: "center", marginTop: "80px" }}>
+          Loading Profile...
+        </h2>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
@@ -32,6 +58,7 @@ function Profile() {
 
       <div className="profile-container">
         <div className="profile-card">
+
           <div className="profile-avatar">
             👤
           </div>
@@ -51,21 +78,24 @@ function Profile() {
 
             <div className="info-box">
               <h3>Status</h3>
-              <p>Active ✅</p>
+              <p>🟢 Active</p>
             </div>
 
             <div className="info-box">
               <h3>User ID</h3>
-              <small>{auth.currentUser?.uid}</small>
+              <small>
+                {auth.currentUser?.uid?.substring(0, 18)}...
+              </small>
             </div>
 
           </div>
+
         </div>
       </div>
-    <Footer />
+
+      <Footer />
     </>
   );
 }
 
 export default Profile;
-

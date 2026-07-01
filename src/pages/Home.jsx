@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import CompetitionCard from "../components/CompetitionCard";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
+
 import { db } from "../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 function Home() {
+  const navigate = useNavigate();
+
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [competitions, setCompetitions] = useState([]);
@@ -32,8 +36,12 @@ function Home() {
 
   const filteredCompetitions = competitions.filter((competition) => {
     const matchesSearch =
-      competition.title.toLowerCase().includes(search.toLowerCase()) ||
-      competition.category.toLowerCase().includes(search.toLowerCase());
+      competition.title
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      competition.category
+        .toLowerCase()
+        .includes(search.toLowerCase());
 
     const matchesCategory =
       selectedCategory === "All" ||
@@ -46,24 +54,46 @@ function Home() {
     <>
       <Navbar />
 
+      {/* Hero Section */}
+
       <section className="hero">
+
         <div className="hero-content">
+
           <h1>
             Discover Amazing <span>Design Competitions</span>
           </h1>
 
           <p>
-            Find national and international competitions, submit your creative
-            work, track deadlines, and build an outstanding design portfolio.
+            Find national and international design competitions,
+            submit your creative work, win exciting prizes and
+            build your professional portfolio.
           </p>
 
-          <button className="hero-btn" onClick={() => window.location.href = "/competitions"}>
-            Explore Competitions
+          <button
+            className="hero-btn"
+            onClick={() => navigate("/competitions")}
+          >
+            Explore Competitions 🚀
           </button>
+
         </div>
+
+        <div className="hero-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900"
+            alt="Design Competition"
+          />
+
+        </div>
+
       </section>
 
+      {/* Featured */}
+
       <section className="featured-section">
+
         <h2>Featured Competitions</h2>
 
         <SearchBar
@@ -72,32 +102,63 @@ function Home() {
         />
 
         <div className="filter-buttons">
-          <button onClick={() => setSelectedCategory("All")}>
+
+          <button
+            onClick={() => setSelectedCategory("All")}
+          >
             All
           </button>
 
-          <button onClick={() => setSelectedCategory("UI/UX")}>
+          <button
+            onClick={() => setSelectedCategory("UI/UX")}
+          >
             UI/UX
           </button>
 
-          <button onClick={() => setSelectedCategory("Graphic Design")}>
+          <button
+            onClick={() => setSelectedCategory("Graphic Design")}
+          >
             Graphic Design
           </button>
 
-          <button onClick={() => setSelectedCategory("Architecture")}>
+          <button
+            onClick={() => setSelectedCategory("Architecture")}
+          >
             Architecture
           </button>
+
         </div>
 
         <div className="competition-grid">
-          {filteredCompetitions.map((competition) => (
-            <CompetitionCard
-              key={competition.id}
-              competition={competition}
-            />
-          ))}
+
+          {filteredCompetitions.length > 0 ? (
+
+            filteredCompetitions.map((competition) => (
+              <CompetitionCard
+                key={competition.id}
+                competition={competition}
+              />
+            ))
+
+          ) : (
+
+            <h3
+              style={{
+                textAlign: "center",
+                width: "100%",
+                color: "#666",
+                marginTop: "40px",
+              }}
+            >
+              No competitions available.
+            </h3>
+
+          )}
+
         </div>
+
       </section>
+
       <Footer />
     </>
   );

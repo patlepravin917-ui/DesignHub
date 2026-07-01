@@ -2,8 +2,16 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
 import Footer from "../components/Footer";
+
 import { auth, db } from "../firebase/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+
+import toast from "react-hot-toast";
 
 function Dashboard() {
   const [submissionCount, setSubmissionCount] = useState(0);
@@ -16,6 +24,8 @@ function Dashboard() {
 
   const fetchDashboard = async () => {
     try {
+      if (!auth.currentUser) return;
+
       const q = query(
         collection(db, "submissions"),
         where("email", "==", auth.currentUser.email)
@@ -28,10 +38,13 @@ function Dashboard() {
         ...doc.data(),
       }));
 
+      list.reverse();
+
       setSubmissionCount(list.length);
       setRecentProjects(list.slice(0, 5));
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Unable to load dashboard.");
     } finally {
       setLoading(false);
     }
@@ -46,16 +59,18 @@ function Dashboard() {
       <Navbar />
 
       <div className="dashboard-header">
+
         <h1>
           Welcome, {auth.currentUser?.displayName || "Student"} 👋
         </h1>
 
         <p>
-          Track your projects, monitor submission status, and
-          participate in exciting design competitions!
+          Track your submitted projects, monitor their status,
+          and participate in exciting design competitions.
         </p>
 
         <div className="dashboard-cards">
+
           <div className="dashboard-card">
             <h2>{submissionCount}</h2>
             <p>Projects Submitted</p>
@@ -67,20 +82,37 @@ function Dashboard() {
           </div>
 
           <div className="dashboard-card">
-            <h2>Active</h2>
+            <h2>🟢 Active</h2>
             <p>Account Status</p>
           </div>
+
         </div>
 
         <div className="recent-projects">
-          <h2>My Recent Projects</h2>
+
+          <h2>📂 My Recent Projects</h2>
 
           {recentProjects.length === 0 ? (
-            <p>No project submitted yet.</p>
+            <div
+              style={{
+                textAlign: "center",
+                padding: "40px",
+              }}
+            >
+              <h3>No projects submitted yet.</h3>
+
+              <p style={{ color: "#666" }}>
+                Submit your first project to see it here.
+              </p>
+            </div>
           ) : (
             <div className="recent-projects-grid">
+
               {recentProjects.map((project) => (
-                <div className="project-card" key={project.id}>
+                <div
+                  className="project-card"
+                  key={project.id}
+                >
                   <h3>{project.title}</h3>
 
                   <p>
@@ -104,10 +136,14 @@ function Dashboard() {
                   </p>
                 </div>
               ))}
+
             </div>
           )}
+
         </div>
+
       </div>
+
       <Footer />
     </>
   );
