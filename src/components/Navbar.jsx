@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../Temp";
+import { useAuth } from "../AuthContext";
 import { logoutUser } from "../services/auth";
 import toast from "react-hot-toast";
 
