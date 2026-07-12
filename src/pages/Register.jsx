@@ -28,7 +28,7 @@ function Register() {
     }
 
     try {
-      await registerUser(email, password);
+      await registerUser(name, email, password);
 
       toast.success("Registration Successful 🎉");
 
