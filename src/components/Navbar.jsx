@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { logoutUser } from "../services/auth";
 import toast from "react-hot-toast";
@@ -7,10 +8,16 @@ function Navbar() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const handleLogout = async () => {
     try {
       await logoutUser();
+
       toast.success("Logged out successfully 👋");
+
+      setMenuOpen(false);
+
       navigate("/login");
     } catch (error) {
       toast.error(error.message);
@@ -20,32 +27,65 @@ function Navbar() {
   return (
     <nav className="navbar">
 
-      <Link to="/" className="logo">
+      <Link
+        to="/"
+        className="logo"
+        onClick={() => setMenuOpen(false)}
+      >
         DesignHub
       </Link>
 
-      <ul className="nav-links">
+      <button
+        className="menu-btn"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        ☰
+      </button>
+
+      <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
 
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </Link>
         </li>
 
         <li>
-          <Link to="/competitions">Competitions</Link>
+          <Link
+            to="/competitions"
+            onClick={() => setMenuOpen(false)}
+          >
+            Competitions
+          </Link>
         </li>
 
         {user && (
           <>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link
+                to="/dashboard"
+                onClick={() => setMenuOpen(false)}
+              >
+                Dashboard
+              </Link>
             </li>
 
             <li>
-              <Link to="/submit">Submit Project</Link>
+              <Link
+                to="/submit"
+                onClick={() => setMenuOpen(false)}
+              >
+                Submit Project
+              </Link>
             </li>
 
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link
+                to="/profile"
+                onClick={() => setMenuOpen(false)}
+              >
+                Profile
+              </Link>
             </li>
           </>
         )}
@@ -61,11 +101,17 @@ function Navbar() {
           </li>
         ) : (
           <li>
-            <Link to="/login">Login</Link>
+            <Link
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+            >
+              Login
+            </Link>
           </li>
         )}
 
       </ul>
+
     </nav>
   );
 }
