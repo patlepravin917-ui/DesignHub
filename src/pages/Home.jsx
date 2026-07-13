@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  FaArrowRight,
+  FaTrophy,
+  FaUsers,
+  FaAward,
+} from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import CompetitionCard from "../components/CompetitionCard";
 import SearchBar from "../components/SearchBar";
@@ -7,7 +13,6 @@ import Footer from "../components/Footer";
 
 import { db } from "../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
-
 function Home() {
   const navigate = useNavigate();
 
@@ -58,37 +63,76 @@ function Home() {
 
       <section className="hero">
 
-        <div className="hero-content">
+  <div className="hero-left">
 
-          <h1>
-            Discover Amazing <span>Design Competitions</span>
-          </h1>
+    <span className="hero-badge">
+      ⭐ Trusted by 5,000+ Designers Worldwide
+    </span>
 
-          <p>
-            Find national and international design competitions,
-            submit your creative work, win exciting prizes and
-            build your professional portfolio.
-          </p>
+    <h1>
+      Discover Amazing
+      <span> Design Competitions</span>
+    </h1>
 
-          <button
-            className="hero-btn"
-            onClick={() => navigate("/competitions")}
-          >
-            Explore Competitions 🚀
-          </button>
+    <p>
+      Participate in national and international design competitions,
+      showcase your creativity, win exciting prizes and build a
+      professional portfolio that stands out.
+    </p>
 
-        </div>
+    <div className="hero-buttons">
 
-        <div className="hero-image">
+      <button
+        className="hero-btn"
+        onClick={() => navigate("/competitions")}
+      >
+        Explore Competitions
+        <FaArrowRight />
+      </button>
 
-          <img
-            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900"
-            alt="Design Competition"
-          />
+      <button
+        className="secondary-btn"
+        onClick={() => navigate("/submit")}
+      >
+        Submit Project
+      </button>
 
-        </div>
+    </div>
 
-      </section>
+    <div className="hero-stats">
+
+      <div className="stat-card">
+        <FaTrophy />
+        <h2>500+</h2>
+        <p>Competitions</p>
+      </div>
+
+      <div className="stat-card">
+        <FaUsers />
+        <h2>50K+</h2>
+        <p>Students</p>
+      </div>
+
+      <div className="stat-card">
+        <FaAward />
+        <h2>₹10M+</h2>
+        <p>Prize Pool</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div className="hero-right">
+
+    <img
+      src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900"
+      alt="DesignHub Hero"
+    />
+
+  </div>
+
+</section>
 
       {/* Featured */}
 

@@ -248,91 +248,174 @@ img {
   text-align: center;
   font-size: 14px;
 }
-/* ==========================================
-   HOME PAGE
-========================================== */
+/* =========================
+   HERO SECTION
+========================= */
 
-.hero{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:80px 8%;
-min-height:85vh;
-background:linear-gradient(135deg,#eef2ff,#ffffff);
-gap:60px;
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 90px 8%;
+  min-height: 90vh;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
 }
 
-.hero-content{
-flex:1;
-text-align:left;
+.hero-left {
+  flex: 1;
 }
 
-.hero-content h1{
-font-size:60px;
-font-weight:700;
-margin-bottom:20px;
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
-.hero-content span{
-color:#4f46e5;
+.hero-right img {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-.hero-content p{
-font-size:20px;
-line-height:1.8;
-color:#666;
-margin-bottom:30px;
+.hero-badge {
+  display: inline-block;
+  background: #e8f0ff;
+  color: #2563eb;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
-.hero-btn{
-padding:16px 34px;
-background:#4f46e5;
-color:white;
-border:none;
-border-radius:10px;
-font-size:18px;
-font-weight:bold;
+.hero h1 {
+  font-size: 56px;
+  line-height: 1.15;
+  font-weight: 800;
+  color: #0f172a;
 }
 
-.hero-image{
-flex:1;
-display:flex;
-justify-content:center;
+.hero h1 span {
+  color: #2563eb;
 }
 
-.hero-image img{
-width:100%;
-max-width:550px;
-border-radius:20px;
-box-shadow:0 20px 50px rgba(0,0,0,.15);
+.hero p {
+  margin: 24px 0;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #475569;
+  max-width: 600px;
 }
 
-/* ==========================================
-   SEARCH BAR
-========================================== */
-.search-container{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    margin:30px 0;
+.hero-buttons {
+  display: flex;
+  gap: 18px;
+  margin-top: 30px;
 }
 
-.search-input{
-    width:100%;
-    max-width:600px;
-    padding:14px 18px;
-    border-radius:12px;
-    border:1px solid #d1d5db;
-    outline:none;
-    font-size:16px;
-    transition:0.3s;
+.hero-btn,
+.secondary-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 15px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s ease;
 }
 
-.search-input:focus{
-    border-color:#4f46e5;
-    box-shadow:0 0 8px rgba(79,70,229,0.3);
+.hero-btn {
+  background: #2563eb;
+  color: #fff;
 }
 
+.hero-btn:hover {
+  transform: translateY(-3px);
+  background: #1d4ed8;
+}
+
+.secondary-btn {
+  background: #fff;
+  border: 2px solid #2563eb;
+  color: #2563eb;
+}
+
+.secondary-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 45px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px;
+  min-width: 150px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+}
+
+.stat-card svg {
+  font-size: 28px;
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.stat-card h2 {
+  font-size: 28px;
+  color: #0f172a;
+}
+
+.stat-card p {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: #64748b;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero p {
+    max-width: 100%;
+  }
+
+  .hero-buttons,
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-right img {
+    max-width: 380px;
+  }
+}
 /* ==========================================
    COMPETITION GRID
 ========================================== */
