@@ -4,14 +4,22 @@ function CompetitionCard({ competition }) {
   return (
     <div className="competition-card">
 
-      <img
-        src={
-          competition.image ||
-          "https://via.placeholder.com/400x250?text=DesignHub"
-        }
-        alt={competition.title}
-        className="competition-image"
-      />
+      <div className="card-image-wrapper">
+
+        <img
+          src={
+            competition.image ||
+            "https://via.placeholder.com/400x250?text=DesignHub"
+          }
+          alt={competition.title}
+          className="competition-image"
+        />
+
+        <span className="status-badge">
+          🟢 Open
+        </span>
+
+      </div>
 
       <div className="competition-content">
 
@@ -21,25 +29,19 @@ function CompetitionCard({ competition }) {
 
         <h3>{competition.title}</h3>
 
-        <p>
-          <strong>🏆 Prize:</strong>{" "}
-          {competition.prize || "To Be Announced"}
-        </p>
+        <div className="card-info">
 
-        <p>
-          <strong>📅 Deadline:</strong>{" "}
-          {competition.deadline || "Coming Soon"}
-        </p>
+          <p>
+            🏆 <strong>Prize</strong><br />
+            {competition.prize || "To Be Announced"}
+          </p>
 
-        <p
-          style={{
-            color: "#16a34a",
-            fontWeight: "bold",
-            margin: "10px 0",
-          }}
-        >
-          🟢 Registration Open
-        </p>
+          <p>
+            📅 <strong>Deadline</strong><br />
+            {competition.deadline || "Coming Soon"}
+          </p>
+
+        </div>
 
         <Link to={`/competition/${competition.id}`}>
           <button className="view-btn">
