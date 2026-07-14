@@ -260,17 +260,12 @@ function Home() {
 
 </section>
 {/* CTA */}
-
 <section className="cta-section">
-
   <h2>Ready to Showcase Your Creativity?</h2>
-
   <p>
     Join thousands of students participating in exciting design competitions.
   </p>
-
   <div className="cta-buttons">
-
     <button
       className="hero-btn"
       onClick={() => navigate("/competitions")}
@@ -284,6 +279,49 @@ function Home() {
     >
       Submit Project
     </button>
+
+  </div>
+
+</section>
+{/* FAQ */}
+
+<section className="faq-section">
+
+  <h2>Frequently Asked Questions</h2>
+
+  <p className="faq-subtitle">
+    Find answers to the most common questions about DesignHub.
+  </p>
+
+  <div className="faq-container">
+
+    <details className="faq-item">
+      <summary>Is DesignHub free to use?</summary>
+      <p>
+        Yes. DesignHub is completely free for students to explore competitions and submit projects.
+      </p>
+    </details>
+
+    <details className="faq-item">
+      <summary>Can I participate in multiple competitions?</summary>
+      <p>
+        Yes. You can participate in as many competitions as you want.
+      </p>
+    </details>
+
+    <details className="faq-item">
+      <summary>How do I submit my project?</summary>
+      <p>
+        Go to the Submit Project page, fill in the required details and submit your work.
+      </p>
+    </details>
+
+    <details className="faq-item">
+      <summary>How are winners selected?</summary>
+      <p>
+        Winners are selected by the respective competition organizers based on their evaluation criteria.
+      </p>
+    </details>
 
   </div>
 
