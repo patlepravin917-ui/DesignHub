@@ -1690,3 +1690,78 @@ img {
   color:#64748b;
   line-height:1.8;
 }
+/* ==========================
+   NEWSLETTER
+========================== */
+.newsletter-section{
+  padding:90px 8%;
+  text-align:center;
+}
+.newsletter-section h2{
+  font-size:42px;
+  color:#0f172a;
+}
+.newsletter-section p{
+  margin:18px 0 40px;
+  color:#64748b;
+}
+.newsletter-box{
+  max-width:650px;
+  margin:auto;
+  display:flex;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+.newsletter-box input{
+  flex:1;
+  border:none;
+  padding:18px;
+  font-size:16px;
+  outline:none;
+}
+.newsletter-box button{
+  border:none;
+  padding:18px 35px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  font-weight:700;
+}
+.newsletter-box button:hover{
+  background:#1d4ed8;
+}
+@media(max-width:700px){
+.newsletter-box{
+flex-direction:column;
+}
+.newsletter-box button{
+width:100%;
+}
+}
+/* ==========================
+   SCROLL TO TOP
+========================== */
+
+.scroll-top-btn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  width:55px;
+  height:55px;
+  border:none;
+  border-radius:50%;
+  background:#2563eb;
+  color:#fff;
+  font-size:24px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,.2);
+  transition:.3s;
+  z-index:1000;
+}
+
+.scroll-top-btn:hover{
+  background:#1d4ed8;
+  transform:translateY(-4px);
+}
