@@ -113,7 +113,14 @@ function Dashboard() {
               </button>
 
             </div>
+              <div className="dashboard-hero-right">
 
+              <img
+                 src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900"
+                 alt="Dashboard"
+              />
+
+             </div>
           </div>
 
         </section>
