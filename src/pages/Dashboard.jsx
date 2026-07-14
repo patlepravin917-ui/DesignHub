@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import {
   FaFolderOpen,
   FaRocket,
@@ -9,29 +10,40 @@ import {
   FaCompass,
   FaUserEdit,
 } from "react-icons/fa";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
+
 import { auth, db } from "../firebase/firebase";
+
 import {
   collection,
   getDocs,
   query,
   where,
 } from "firebase/firestore";
+
 import toast from "react-hot-toast";
 
 function Dashboard() {
+
   const navigate = useNavigate();
+
   const [submissionCount, setSubmissionCount] = useState(0);
   const [recentProjects, setRecentProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetchDashboard();
   }, []);
+
   const fetchDashboard = async () => {
+
     try {
+
       if (!auth.currentUser) return;
+
       const q = query(
         collection(db, "submissions"),
         where(
@@ -40,33 +52,46 @@ function Dashboard() {
           auth.currentUser.email
         )
       );
+
       const snapshot = await getDocs(q);
+
       const list = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
 
       list.reverse();
+
       setSubmissionCount(list.length);
+
       setRecentProjects(list.slice(0, 5));
+
     } catch (error) {
+
       console.error(error);
+
       toast.error("Unable to load dashboard.");
+
     } finally {
+
       setLoading(false);
 
     }
+
   };
+
   if (loading) {
     return <Loading />;
   }
-    return (
+
+  return (
+
     <>
+
       <Navbar />
 
       <div className="dashboard-page">
-
-        {/* Hero */}
+              {/* Hero */}
 
         <section className="dashboard-hero">
 
@@ -77,13 +102,12 @@ function Dashboard() {
             </span>
 
             <h1>
-              Hello,{" "}
-              {auth.currentUser?.displayName || "Student"} 👋
+              Hello, {auth.currentUser?.displayName || "Student"} 👋
             </h1>
 
             <p>
-              Manage your submitted projects, discover new design
-              competitions and keep building your creative portfolio.
+              Manage your submitted projects, discover new design competitions,
+              and keep building your creative portfolio.
             </p>
 
             <div className="dashboard-actions">
@@ -113,14 +137,16 @@ function Dashboard() {
               </button>
 
             </div>
-              <div className="dashboard-hero-right">
 
-              <img
-                 src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900"
-                 alt="Dashboard"
-              />
+          </div>
 
-             </div>
+          <div className="dashboard-hero-right">
+
+            <img
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900"
+              alt="Dashboard"
+            />
+
           </div>
 
         </section>
@@ -130,48 +156,31 @@ function Dashboard() {
         <section className="dashboard-stats">
 
           <div className="dashboard-card">
-
             <FaFolderOpen className="dashboard-icon" />
-
             <h2>{submissionCount}</h2>
-
             <p>Projects Submitted</p>
-
           </div>
 
           <div className="dashboard-card">
-
             <FaRocket className="dashboard-icon" />
-
             <h2>{recentProjects.length}</h2>
-
             <p>Recent Projects</p>
-
           </div>
 
           <div className="dashboard-card">
-
             <FaCheckCircle className="dashboard-icon" />
-
             <h2>Active</h2>
-
             <p>Account Status</p>
-
           </div>
 
           <div className="dashboard-card">
-
             <FaTrophy className="dashboard-icon" />
-
             <h2>100%</h2>
-
             <p>Profile Ready</p>
-
           </div>
 
         </section>
-
-        {/* Recent Projects */}
+                {/* Recent Projects */}
 
         <section className="recent-projects">
 
@@ -199,6 +208,7 @@ function Dashboard() {
                 className="hero-btn"
                 onClick={() => navigate("/submit")}
               >
+                <FaPlusCircle />
                 Submit First Project
               </button>
 
@@ -218,15 +228,11 @@ function Dashboard() {
                   <h3>{project.title}</h3>
 
                   <p>
-
                     <strong>Competition:</strong>{" "}
-
                     {project.competition}
-
                   </p>
 
                   <p>
-
                     <strong>Status:</strong>{" "}
 
                     <span
@@ -252,8 +258,7 @@ function Dashboard() {
           )}
 
         </section>
-
-        {/* Achievement */}
+                {/* Achievements */}
 
         <section className="achievement-section">
 
@@ -292,16 +297,13 @@ function Dashboard() {
             </div>
 
           </div>
-
         </section>
-
       </div>
-
       <Footer />
 
     </>
+
   );
 
 }
-
 export default Dashboard;
