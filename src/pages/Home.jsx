@@ -217,6 +217,77 @@ function Home() {
   </div>
 
 </section>
+{/* Testimonials */}
+
+<section className="testimonial-section">
+
+  <h2>What Our Users Say</h2>
+
+  <p className="testimonial-subtitle">
+    Thousands of students trust DesignHub to discover amazing opportunities.
+  </p>
+
+  <div className="testimonial-grid">
+
+    <div className="testimonial-card">
+      <h3>⭐⭐⭐⭐⭐</h3>
+      <p>
+        "DesignHub helped me discover amazing competitions and improve my portfolio."
+      </p>
+      <h4>Rahul Sharma</h4>
+      <small>UI/UX Student</small>
+    </div>
+
+    <div className="testimonial-card">
+      <h3>⭐⭐⭐⭐⭐</h3>
+      <p>
+        "The interface is simple, clean and very helpful for students."
+      </p>
+      <h4>Anjali Verma</h4>
+      <small>Graphic Designer</small>
+    </div>
+
+    <div className="testimonial-card">
+      <h3>⭐⭐⭐⭐⭐</h3>
+      <p>
+        "I submitted my first design project through DesignHub. Great experience!"
+      </p>
+      <h4>Aditya Patil</h4>
+      <small>Architecture Student</small>
+    </div>
+
+  </div>
+
+</section>
+{/* CTA */}
+
+<section className="cta-section">
+
+  <h2>Ready to Showcase Your Creativity?</h2>
+
+  <p>
+    Join thousands of students participating in exciting design competitions.
+  </p>
+
+  <div className="cta-buttons">
+
+    <button
+      className="hero-btn"
+      onClick={() => navigate("/competitions")}
+    >
+      Explore Competitions
+    </button>
+
+    <button
+      className="secondary-btn"
+      onClick={() => navigate("/submit")}
+    >
+      Submit Project
+    </button>
+
+  </div>
+
+</section>
 
       {/* Featured */}
 
