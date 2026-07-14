@@ -1516,3 +1516,67 @@ color:#666;
   line-height:1.7;
 
 }
+/* ==========================
+   HOW IT WORKS
+========================== */
+
+.how-section{
+  padding:90px 8%;
+  text-align:center;
+}
+
+.how-section h2{
+  font-size:42px;
+  color:#0f172a;
+}
+
+.how-subtitle{
+  margin:15px 0 55px;
+  color:#64748b;
+}
+
+.how-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+}
+
+.step-card{
+  background:#fff;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  transition:.3s;
+}
+
+.step-card:hover{
+  transform:translateY(-8px);
+}
+
+.step-card span{
+  width:60px;
+  height:60px;
+  margin:auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#2563eb;
+  color:#fff;
+
+  font-size:24px;
+  font-weight:700;
+}
+
+.step-card h3{
+  margin:20px 0 12px;
+  color:#0f172a;
+}
+
+.step-card p{
+  color:#64748b;
+  line-height:1.7;
+}

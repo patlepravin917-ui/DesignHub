@@ -178,6 +178,45 @@ function Home() {
   </div>
 
 </section>
+{/* How It Works */}
+
+<section className="how-section">
+
+  <h2>How It Works</h2>
+
+  <p className="how-subtitle">
+    Get started with DesignHub in just four simple steps.
+  </p>
+
+  <div className="how-grid">
+
+    <div className="step-card">
+      <span>1</span>
+      <h3>Create Account</h3>
+      <p>Sign up and create your DesignHub profile.</p>
+    </div>
+
+    <div className="step-card">
+      <span>2</span>
+      <h3>Explore</h3>
+      <p>Browse national and international competitions.</p>
+    </div>
+
+    <div className="step-card">
+      <span>3</span>
+      <h3>Submit Project</h3>
+      <p>Upload your project before the deadline.</p>
+    </div>
+
+    <div className="step-card">
+      <span>4</span>
+      <h3>Win Rewards</h3>
+      <p>Get recognized and win exciting prizes.</p>
+    </div>
+
+  </div>
+
+</section>
 
       {/* Featured */}
 
