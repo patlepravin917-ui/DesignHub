@@ -32,7 +32,7 @@ function Navbar() {
         className="logo"
         onClick={() => setMenuOpen(false)}
       >
-        DesignHub
+        DesignHub 🚀
       </Link>
 
       <button
@@ -105,7 +105,7 @@ function Navbar() {
               to="/login"
               onClick={() => setMenuOpen(false)}
             >
-              Login
+             Login →
             </Link>
           </li>
         )}
