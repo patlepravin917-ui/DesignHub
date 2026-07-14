@@ -133,6 +133,51 @@ function Home() {
   </div>
 
 </section>
+      {/* Why Choose DesignHub */}
+
+<section className="why-section">
+
+  <h2>Why Choose DesignHub?</h2>
+
+  <p className="why-subtitle">
+    Everything you need to discover, participate and showcase your creativity.
+  </p>
+
+  <div className="why-grid">
+
+    <div className="why-card">
+      <div className="why-icon">🏆</div>
+
+      <h3>Win Rewards</h3>
+
+      <p>
+        Participate in exciting competitions and win amazing prizes.
+      </p>
+    </div>
+
+    <div className="why-card">
+      <div className="why-icon">🌍</div>
+
+      <h3>Global Opportunities</h3>
+
+      <p>
+        Discover national and international design competitions.
+      </p>
+    </div>
+
+    <div className="why-card">
+      <div className="why-icon">🚀</div>
+
+      <h3>Build Portfolio</h3>
+
+      <p>
+        Showcase your projects and strengthen your professional portfolio.
+      </p>
+    </div>
+
+  </div>
+
+</section>
 
       {/* Featured */}
 
